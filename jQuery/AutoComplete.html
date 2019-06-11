@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Auto Complete</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <div class="autocomplete">
+            <input type="text" name="" id="tags" placeholder="Tag name">
+        </div>
+        <script>
+            var availableTags = ["C#", "Python", "Javascript"];
+            $("#tags").autocomplete({
+                source: availableTags
+            });
+        </script>
+    </body>
+</html>

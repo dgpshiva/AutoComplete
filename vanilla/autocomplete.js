@@ -16,8 +16,8 @@ function autocomplete(inp, arr) {
                     inp.value = this.getElementsByTagName("input")[0].value;
                     closeAllLists();
                 });
+                a.appendChild(b);
             }
-            a.appendChild(b);
         }
     });
 
@@ -35,5 +35,28 @@ function autocomplete(inp, arr) {
     });
 }
 
-var countries = ["India", "United States", "Indonesia"];
-autocomplete(document.getElementById("myInput"), countries);
+var countriesList = []
+function loadCountries() {
+    var countriesEndPoint = 'http://localhost:5000/v1/countries';
+
+    var requestTimeOut = setTimeout( function() {
+        window.alert("Did not get response from API!");
+    }, 20000);
+
+    $.getJSON(countriesEndPoint)
+        .done(function(countriesResponseJSON) {
+            clearTimeout(requestTimeOut);
+            countriesResponseJSON.countries.forEach(country => {
+                countriesList.push(country);
+            });
+        })
+        .fail(function(error) {
+            clearTimeout();
+            window.alert("Failed to get response from API!");
+        })
+}
+
+loadCountries();
+
+// var countries = ["India", "United States", "Indonesia"];
+autocomplete(document.getElementById("myInput"), countriesList);
